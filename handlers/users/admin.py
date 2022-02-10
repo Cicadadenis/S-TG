@@ -119,10 +119,12 @@ async def broadcast4(message: Message, state: FSMContext):
 
 @dp.callback_query_handler(text="fdel")
 async def fdel(call: CallbackQuery):
-    path = f'pics/broadcast/cicada.jpg'
-    os.remove(path)
-    await call.message.answer("Фото Удаленно", reply_markup=back_to_main_menu)
-
+    try:
+        path = f'pics/broadcast/cicada.jpg'
+        os.remove(path)
+        await call.message.answer("Фото Удаленно", reply_markup=back_to_main_menu)
+    except:
+        await call.message.answer("Фото Удаленно", reply_markup=back_to_main_menu)
 
 
 @dp.callback_query_handler(text="go_start")
